@@ -57,7 +57,7 @@ bool check(Ngay a)
             return false;
     }
     else
-        return true;
+        return false;
 }
 
 void input(Ngay &a)
