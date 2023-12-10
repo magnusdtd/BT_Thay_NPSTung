@@ -2,8 +2,8 @@
 using namespace std;
 
 struct Staff {
-	string name;
-	int age;
+	string id;
+	int yearOfBirth;
 };
 Staff a[100];
 int n = 0;
@@ -11,25 +11,25 @@ int n = 0;
 void input(Staff a[], int& n) {
 	cout << "Nhap so luong nhan vien: ";
 	cin >> n;
-	cout << "Nhap lan luot ten, tuoi cua nhan vien: \n";
+	cout << "Nhap lan luot ma so, nam sinh cua nhan vien: \n";
 	for (int i = 0; i < n; i++) {
-		cin >> a[i].name >> a[i].age;
+		cin >> a[i].id >> a[i].yearOfBirth;
 	}
 }
 
 void output(Staff a[], int n) {
 	for (int i = 0; i < n; i++) {
-		cout << "(" << a[i].name << ";" << a[i].age << ")\n";
+		cout << "(" << a[i].id << ";" << a[i].yearOfBirth << ")\n";
 	}
 }
 
-int getMaxDistance(Staff a[], int n) {
+int getMaxAge(Staff a[], int n) {
 	int index = 0;
-	float max = a[0].age;
+	float max = a[0].yearOfBirth;
 	for (int i = 0; i < n; i++) {
-		if (max < a[i].age) {
+		if (max > a[i].yearOfBirth) {	//nguoi co nam sinh nho nhat la nguoi gia nhat :))
 			index = i;
-			max = a[i].age;
+			max = a[i].yearOfBirth;
 		}
 	}
 	return index;
@@ -38,7 +38,7 @@ int getMaxDistance(Staff a[], int n) {
 int main() {
 	input(a, n);
 	//output(a, n);
-	int ans = getMaxDistance(a, n);
-	cout << "Diem cach xa goc toa do nhat la: " << a[ans].name << " " << a[ans].age;
+	int ans = getMaxAge(a, n);
+	cout << "Nguoi lon tuoi nhat cong ty la: " << a[ans].id << " " << a[ans].yearOfBirth;
 	return 0;
 }
