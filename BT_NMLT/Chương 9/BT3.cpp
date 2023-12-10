@@ -40,9 +40,9 @@ int main(){
 			else {
 				sum = sum + a[i];
 			}
-			cout << "sum: " << sum.x << "/" << sum.y << "\n";
 			i++;
 		}
+		output << sum;
 	}
 
 	input.close();
