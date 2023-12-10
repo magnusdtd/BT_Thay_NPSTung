@@ -25,7 +25,7 @@ int main(){
 	int i=0;
 	Fraction sum;
 	
-	ifstream file("input3.txt", ios::in);
+	fstream file("input3.txt", ios::in);
 	string line;
 	
 	input.open("input3.txt", ios::in);
