@@ -1,1 +1,2 @@
-# BT_Thay_NPSTung
+# Introduction to Programming and OOP problem sets
+
