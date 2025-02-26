@@ -18,7 +18,13 @@ public:
 };
 
 int main() {
-    Fraction a(1, -5);
+    int numerator, denominator;
+    cout << "== INPUT A FRACTION, OUTPUT ITS TYPE(ZERO, NEGATIVE, POSITIVE) ==\n";
+    cout << "Enter the numerator: ";
+    cin >> numerator;
+    cout << "Enter the denominator: ";
+    cin >> denominator;
+    Fraction a(numerator, denominator);
     int type = a.getTypeOfFraction();
     cout << ((type == ZERO) ? "ZERO" : (type == POSITIVE) ? "POSITIVE" : "NEGATIVE") << "\n";
 }
