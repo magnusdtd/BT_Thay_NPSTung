@@ -1,73 +1,87 @@
 #include <iostream>
-
 using namespace std;
 
-struct Node{
+class Node{
+private:
     int data;
     Node* next;
+public:
+    Node();
+    Node(int data);
+    friend class Queue;
 };
+
+Node::Node() { data = 0; next = nullptr; }
+Node::Node(int data): data(data), next(nullptr) {}
 
 class Queue{
 private:
-    Node* front;
+    Node* head;
     int size;
 public:
-    Queue(){
-        front = NULL;
-        size = 0;
-    }
-    void push(int x){
-        Node* temp = new Node();
-        temp->data = x;
-        temp->next = NULL;
-        if(front == NULL){
-            front = temp;
-        }else{
-            Node* temp1 = front;
-            while(temp1->next != NULL){
-                temp1 = temp1->next;
-            }
-            temp1->next = temp;
-        }
-        size++;
-    }
-    void pop(){
-        if(front == NULL){
-            cout << "Queue is empty" << endl;
-            return;
-        }
-        Node* temp = front;
-        front = front->next;
+    Queue();
+    ~Queue();
+    void push(int data);
+    void pop();
+    int front();
+    int getSize();
+    bool isEmpty();
+};
+
+Queue::Queue(): head(nullptr), size(0) {}
+Queue::~Queue() {
+    while (head) {
+        Node *temp = head;
+        head = head->next;
         delete temp;
+        temp = nullptr;
         size--;
     }
-    int getFront(){
-        if(front == NULL){
-            cout << "Queue is empty" << endl;
-            return -1;
-        }
-        return front->data;
+}
+void Queue::push(int data){
+    Node* temp = new Node(data);
+    if(!head)
+        head = temp;
+    else {
+        Node* current = head;
+        while(current->next)
+            current = current->next;
+        current->next = temp;
     }
-    int getSize(){
-        return size;
+    size++;
+}
+void Queue::pop(){
+    if(!head ){
+        cout << "Queue is empty\n";
+        return;
     }
-    bool isEmpty(){
-        return front == NULL;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    size--;
+}
+int Queue::front(){
+    if(head == nullptr){
+        cout << "Queue is empty\n";
+        return -1;
     }
-};
+    return head->data;
+}
+int Queue::getSize(){ return size; }
+bool Queue::isEmpty(){ return head == nullptr; }
 
 int main(){
     Queue q;
     while (true)
     {
-        system("cls");
-        cout << "== SIMULATE QUEUE USING LINKED LIST ==" << endl;
-        cout << "1. Push an element into Queue" << endl;
-        cout << "2. Pop an element from Queue" << endl;
-        cout << "3. Get the front element of Queue" << endl;
-        cout << "4. Check if Queue is empty" << endl;
-        cout << "5. Get Queue size" << endl;
-        cout << "6. Exit" << endl;
+        system("clear");
+        cout << "== SIMULATE QUEUE USING LINKED LIST ==\n";
+        cout << "1. Push an element into Queue\n";
+        cout << "2. Pop an element from Queue\n";
+        cout << "3. Get the front element of Queue\n";
+        cout << "4. Check if Queue is empty\n";
+        cout << "5. Get Queue size\n";
+        cout << "6. Exit\n";
 
         int choice;
         cout << "Enter your choice: ";
@@ -83,30 +97,28 @@ int main(){
         }
         else if (choice == 3){
             if(q.isEmpty()){
-                cout << "Stack is empty" << endl;
+                cout << "Stack is empty" << "\n";
             }
             else{
-                cout << "The top element: " << q.getFront() << endl;
+                cout << "The top element: " << q.front() << "\n";
             }
         }
         else if (choice == 4){
             if(q.isEmpty()){
-                cout << "Stack is empty" << endl;
+                cout << "Stack is empty\n";
             }
             else{
-                cout << "Stack is not empty" << endl;
+                cout << "Stack is not empty\n";
             }
         }
         else if (choice == 5){
-            cout << "Stack size: " << q.getSize() << endl;
+            cout << "Stack size: " << q.getSize() << "\n";
         }
         else if (choice == 6){
             break;
         }
 
-        system("pause");
+        system("sleep 3");
     }
     
-    
-    return 0;
 }

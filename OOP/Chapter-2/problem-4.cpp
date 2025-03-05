@@ -1,59 +1,73 @@
 #include <iostream>
-
 using namespace std;
 
-struct Node{
+class Node{
+private:
     int data;
     Node* next;
+public:
+    Node();
+    Node(int data);
+    friend class Stack;
 };
 
+Node::Node() { data = 0; next = nullptr; }
+Node::Node(int data): data(data), next(nullptr) {}
+
 class Stack{
-    private:
-        Node* top;
-        int size;
-    public:
-        Stack(){
-            top = NULL;
-            size = 0;
-        }
-        void push(int x){
-            Node* temp = new Node();
-            temp->data = x;
-            temp->next = top;
-            top = temp;
-            size++;
-        }
-        void pop(){
-            if(top == NULL) return;
-            Node* temp = top;
-            top = top->next;
-            delete temp;
-            temp = nullptr;
-            size --;
-        }
-        int Top(){
-            return top->data;
-        }
-        bool isEmpty(){
-            return top == NULL;
-        }
-        int getSize(){
-            return size;
-        }
+private:
+    Node *head;
+    int size;
+public:
+    Stack();
+    ~Stack();
+    void push(int data);
+    void pop();
+    int top();
+    bool isEmpty();
+    int getSize();
 };
+
+Stack::Stack(): head(nullptr), size(0) {}
+Stack::~Stack() {
+    while (head) {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        temp = nullptr;
+        size--;
+    }
+}
+void Stack::push(int data){
+    Node* temp = new Node(data);
+    temp->next = head;
+    head = temp;
+    size++;
+}
+void Stack::pop() {
+    if(!head) return;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    temp = nullptr;
+    size --;
+}
+int Stack::top() { return head->data; }
+bool Stack::isEmpty() { return head == nullptr; }
+int Stack::getSize() { return size; }
 
 int main(){
     Stack s;
     while (true)
     {
-        system("cls");
-        cout << "== SIMULATE STACK USING LINKED LIST ==" << endl;
-        cout << "1. Push an element into Stack" << endl;
-        cout << "2. Pop an element from Stack" << endl;
-        cout << "3. Get the top element of Stack" << endl;
-        cout << "4. Check if Stack is empty" << endl;
-        cout << "5. Get Stack size" << endl;
-        cout << "6. Exit" << endl;
+        system("clear"); // Clear for bash, ps and cls for cmd
+        cout << "== SIMULATE STACK USING LINKED LIST ==\n";
+        cout << "1. Push an element into Stack\n";
+        cout << "2. Pop an element from Stack\n";
+        cout << "3. Get the top element of Stack\n";
+        cout << "4. Check if Stack is empty\n";
+        cout << "5. Get Stack size\n";
+        cout << "6. Exit\n";
 
         int choice;
         cout << "Enter your choice: ";
@@ -69,30 +83,27 @@ int main(){
         }
         else if (choice == 3){
             if(s.isEmpty()){
-                cout << "Stack is empty" << endl;
+                cout << "Stack is empty" << "\n";
             }
             else{
-                cout << "The top element: " << s.Top() << endl;
+                cout << "The top element: " << s.top() << "\n";
             }
         }
         else if (choice == 4){
             if(s.isEmpty()){
-                cout << "Stack is empty" << endl;
+                cout << "Stack is empty" << "\n";
             }
             else{
-                cout << "Stack is not empty" << endl;
+                cout << "Stack is not empty" << "\n";
             }
         }
         else if (choice == 5){
-            cout << "Stack size: " << s.getSize() << endl;
+            cout << "Stack size: " << s.getSize() << "\n";
         }
         else if (choice == 6){
             break;
         }
-
-        system("pause");
+        system("sleep 5");
     }
     
-    
-    return 0;
 }
