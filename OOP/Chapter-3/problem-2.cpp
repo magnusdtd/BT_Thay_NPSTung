@@ -10,8 +10,6 @@ public:
     CNgay(int day);
     bool operator < (CNgay t);
     bool operator == (CNgay t);
-    CNgay operator ++ ();
-    CNgay operator -- ();
     CNgay operator ++ (int);
     CNgay operator -- (int);
     friend istream& operator >> (istream& is, CNgay& t);
@@ -34,29 +32,19 @@ bool CNgay::operator == (CNgay t) {
     return day == t.day;
 }
 
-CNgay CNgay::operator ++ () {
-    ++day;
-    normalize();
-    return *this;
-}
-
-CNgay CNgay::operator -- () {
-    --day;
-    normalize();
-    return *this;
-}
-
 // Toán tử tăng sau (t++)
 CNgay CNgay::operator++(int) {
-    CNgay temp = *this; // Lưu trạng thái cũ
-    ++(*this); // Gọi toán tử tăng trước
+    CNgay temp = *this;
+    day++;
+    normalize();    
     return temp;
 }
 
 // Toán tử giảm sau (t--)
 CNgay CNgay::operator--(int) {
-    CNgay temp = *this; // Lưu trạng thái cũ
-    --(*this); // Gọi toán tử giảm trước
+    CNgay temp = *this;
+    day--;
+    normalize();
     return temp;
 }
 
@@ -72,7 +60,5 @@ ostream& operator << (ostream& os, const CNgay& t) {
 
 
 int main() {
-    CNgay day1, day2; cin >> day1 >> day2;
-    cout << day1 << " " << day2 << "\n";
-    cout << (day1 < day2 ? "True\n" : "False\n");
+
 }

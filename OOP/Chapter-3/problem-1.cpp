@@ -15,8 +15,6 @@ public:
     CThoiGian operator - (CThoiGian t);
     CThoiGian operator ++ ();
     CThoiGian operator -- ();
-    friend ostream& operator << (ostream& os, const CThoiGian& t);
-    friend istream& operator >> (istream& os, CThoiGian& t);
 };
 
 void CThoiGian::normalize() {
@@ -89,18 +87,7 @@ CThoiGian CThoiGian::operator -- () {
     return *this;
 }
 
-ostream& operator << (ostream& os, const CThoiGian& t) {
-    os << t.hour << "h " << t.minute << "m " << t.second << "s\n";
-    return os;
-}
-
-istream& operator >> (istream& is, CThoiGian& t) {
-    is >> t.hour >> t.minute >> t.second;
-    return is;
-}
 
 int main() {
-    CThoiGian time1, time2;
-    cin >> time1 >> time2;
-    cout << time1 - time2 << "\n"; // Co van de voi so am
+
 }
