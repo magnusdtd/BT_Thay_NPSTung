@@ -118,7 +118,7 @@ năm sinh, hãy tìm cầu thủ lớn tuổi nhất xuất ra tập tin
         </tr>
     </table>
 
-8. Tập tin “INPUT.TXT chứa số l ư ợng tin nhắn bình chọn của khán giả do ca sĩ mình yêu thích: “Mã bình chọn, ca sĩ được bình chọn, thời gian bình chọn Hãy in ra OUTPUT.TXT ca sĩ được bình chọn nhiều nhất.
+8. Tập tin “INPUT.TXT chứa số lượng tin nhắn bình chọn của khán giả do ca sĩ mình yêu thích: “Mã bình chọn, ca sĩ được bình chọn, thời gian bình chọn Hãy in ra OUTPUT.TXT ca sĩ được bình chọn nhiều nhất.
 
     *Lưu ý dòng đầu tiên là giờ mở tổng dài bình chọn và đóng tổng đài bình chọn
 
